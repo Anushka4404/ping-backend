@@ -25,14 +25,14 @@ app.use(cookieParser());
 app.use(
   cors({
     //origin: 'http://localhost:5173', // Adjust this if your frontend is running elsewhere
-    //  origin: function (origin, callback) {
-    //   if (!origin || allowedOrigins.includes(origin)) {
-    //     callback(null, true);
-    //   } else {
-    //     callback(new Error('Not allowed by CORS'));
-    //   }
-    // },
-    origin: "https://ping-frontend6.onrender.com",
+     origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    //origin: "https://ping-frontend6.onrender.com",
     credentials: true,
   })
 );
