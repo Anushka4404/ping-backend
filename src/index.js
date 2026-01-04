@@ -25,13 +25,14 @@ app.use(cookieParser());
 app.use(
   cors({
     //origin: 'http://localhost:5173', // Adjust this if your frontend is running elsewhere
-     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    //  origin: function (origin, callback) {
+    //   if (!origin || allowedOrigins.includes(origin)) {
+    //     callback(null, true);
+    //   } else {
+    //     callback(new Error('Not allowed by CORS'));
+    //   }
+    // },
+    origin: "https://ping-frontend6.onrender.com",
     credentials: true,
   })
 );
@@ -45,7 +46,7 @@ app.use('/api/groq', groqRoutes); // Your Groq routes for summarization, transla
 // ✅ Global error handler
 app.use((err, req, res, next) => {
   console.error('Server Error:', err.message);
-  
+
   if (err.message === "Not allowed by CORS") {
     return res.status(403).json({ message: "CORS error" });
   }
